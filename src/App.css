@@ -1,6 +1,7 @@
 .App {
+  position: relative;
   min-height: 100vh;
-  text-align: center;
+  /* text-align: center; */
   background-image: url('./images/james-chou-325067-unsplash.jpg');
   background-size: cover;
   background-position: center;
