@@ -6,10 +6,12 @@ import FloatingBox from './components/FloatingBox/FloatingBox';
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <React.Fragment>
         <Header />
-        <FloatingBox />
-      </div>
+        <div className="App">
+          <FloatingBox />
+        </div>
+      </React.Fragment>
     );
   }
 }
