@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import './FloatingBox.css';
 
 const floatingBox = () => (
-    <React.Fragment>
+    <Fragment>
         <style>
         @import url('https://fonts.googleapis.com/css?family=Mali');
         </style>
         <div className='box'>
             <h1>It's about running and stuff.</h1>
         </div>
-    </React.Fragment>
+    </Fragment>
 )
 
 export default floatingBox;

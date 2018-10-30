@@ -1,0 +1,28 @@
+.blog {
+    min-height: 25vh;
+    max-height: 70vh;
+    min-width: 15vw;
+    max-width: 40vw;
+    overflow: scroll;
+    background: #ccc;
+    opacity: 0.7;
+}
+
+.blog * {
+    padding: 10px;
+    margin: 0;
+}
+
+@media (min-width: 801px) {
+    .blog {
+        position: absolute;
+        top: 10vh;
+        left: 5vw;
+    }
+}
+
+@media (max-width: 800px) {
+    .blog {
+        min-width: 80vw;
+    }
+}
