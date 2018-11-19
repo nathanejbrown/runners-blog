@@ -3,6 +3,8 @@ import './BlogPost.css';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
 
+import Spinner from '../UI/Spinner/Spinner';
+
 class BlogPost extends Component {
 
     componentDidMount() {
@@ -11,10 +13,12 @@ class BlogPost extends Component {
 
     render() {
 
-        let postTitle = this.props.posts ? this.props.posts[1].title : 'Blah';
-        let postBody = this.props.posts ? this.props.posts[1].body : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut cursus vitae purus ac lobortis.'
+        let postTitle = this.props.posts ? this.props.posts[1].title : '';
+        let postBody = this.props.posts ? this.props.posts[1].body : ''
+        let loadingAnimation = this.props.loading ? <Spinner /> : null
         return (
             <div className='blog'>
+                {loadingAnimation}
                 <h1 className='title'>{postTitle}</h1>
                 <p>{postBody}</p>
             </div>
