@@ -7,16 +7,22 @@ export const fetchPostsStart = () => {
     }
   }
 
-export const fetchOrders = (token, userId) => {
+export const fetchPostsSuccess = (posts) => {
+    console.log('posts', posts)
+    return {
+        type: actionTypes.FETCH_POSTS_SUCCESS,
+        posts: posts
+    }
+}
+
+export const fetchPosts = () => {
     return dispatch => {
       dispatch(fetchPostsStart())
       axios.get('/posts')
       .then(res => {
-        console.log(res)
-        // dispatch(fetchOrdersSuccess(fetchedOrders))
+        dispatch(fetchPostsSuccess(res.data))
       })
       .catch(err => {
-        // dispatch(fetchOrdersFailed(err))
         console.log(err)
       });
     }

@@ -11,7 +11,7 @@ class App extends Component {
         <Header />
         <div className="App">
           <FloatingBox />
-          <BlogPost title='Blog Title'/>
+          <BlogPost/>
         </div>
       </Fragment>
     );

@@ -1,3 +1,3 @@
 export {
-    fetchOrders
+    fetchPosts
 } from './posts'
