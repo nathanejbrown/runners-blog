@@ -13,8 +13,8 @@ class BlogPost extends Component {
 
     render() {
 
-        let postTitle = this.props.posts ? this.props.posts[1].title : '';
-        let postBody = this.props.posts ? this.props.posts[1].body : ''
+        let postTitle = this.props.posts ? this.props.posts[this.props.posts.length - 1].title : '';
+        let postBody = this.props.posts ? this.props.posts[this.props.posts.length - 1].body : ''
         let loadingAnimation = this.props.loading ? <Spinner /> : null
         return (
             <div className='blog'>

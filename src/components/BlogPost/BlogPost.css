@@ -1,7 +1,7 @@
 .blog {
-    min-height: 25vh;
+    min-height: 35vh;
     max-height: 70vh;
-    min-width: 15vw;
+    min-width: 25vw;
     max-width: 40vw;
     overflow: scroll;
     background: #ccc;
@@ -17,7 +17,7 @@
     .blog {
         position: absolute;
         top: 10vh;
-        left: 5vw;
+        left: 1vw;
     }
 }
 
