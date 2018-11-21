@@ -1,9 +1,11 @@
-import React, { Fragment, Component } from 'react';
+import React, { Component } from 'react';
 import './BlogPost.css';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
 
-import Spinner from '../UI/Spinner/Spinner';
+import Spinner from '../../components/UI/Spinner/Spinner';
+
+// NEED TO SWITCH THIS TO A STATELESS COMPONENT. RENDER IT IN HOMEPAGE AND PASS PROPS.
 
 class BlogPost extends Component {
 

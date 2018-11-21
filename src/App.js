@@ -1,19 +1,33 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import './App.css';
-import Header from './components/Header/Header';
-import FloatingBox from './components/FloatingBox/FloatingBox';
-import BlogPost from './components/BlogPost/BlogPost';
+// import asyncComponent from './hoc/asyncComponent/asyncComponent';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import HomePage from './containers/HomePage/HomePage';
+import Login from './containers/Login/Login';
+
+// const asyncLogin = asyncComponent(() => {
+//   return import('./containers/Login/Login');
+// });
+
+// const asyncHome = asyncComponent(() => {
+//   return import ('./containers/HomePage/HomePage');
+// })
 
 class App extends Component {
   render() {
+
+    let routes = (
+      <Switch>
+        <Route path="/login" component={Login} />
+        <Route path="/" exact component={HomePage} />
+        <Redirect to="/" />
+      </Switch>
+    )
+
     return (
-      <Fragment>
-        <Header />
-        <div className="App">
-          <FloatingBox />
-          <BlogPost/>
-        </div>
-      </Fragment>
+      <div>
+        {routes}
+      </div>
     );
   }
 }
