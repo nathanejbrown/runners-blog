@@ -14,7 +14,7 @@ export const fetchPostsSuccess = (posts) => {
     }
 }
 
-export const fetchPosts = () => {
+export const fetchNewestPost = () => {
     return dispatch => {
       dispatch(fetchPostsStart())
       axios.get('/newest-post')

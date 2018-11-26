@@ -1,3 +1,3 @@
 export {
-    fetchPosts
+    fetchNewestPost
 } from './posts'
