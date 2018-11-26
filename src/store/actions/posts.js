@@ -17,7 +17,7 @@ export const fetchPostsSuccess = (posts) => {
 export const fetchNewestPost = () => {
     return dispatch => {
       dispatch(fetchPostsStart())
-      axios.get('/newest-post')
+      axios.get('posts/newest-post')
       .then(res => {
         dispatch(fetchPostsSuccess(res.data))
       })
