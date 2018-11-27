@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
+import './Login.css';
 import Header from '../../components/Header/Header';
+import Input from '../../components/Input/Input';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
 import {updateObject} from '../../shared/utility';
@@ -29,14 +31,17 @@ class Login extends Component {
     }
 
     render () {
+
         return (
             <Fragment>
                 <Header loggedIn={this.props.loggedIn}/>
-                <form>
-                    <input name='email' type='text' placeholder='Email Address' onChange={(event) => this.changedInput(event)}></input>
-                    <input name='password' type='password' placeholder='Password' onChange={(event) => this.changedInput(event)}></input>
-                    <button type='submit' onClick={(event) => this.processLogin(event)}>Log In</button>
-                </form>
+                <div className='formBox'>
+                    <form>
+                        <Input inputName='email' inputType='text' inputPlaceholder='Email Address' label='Email Address' changed={(event) => this.changedInput(event)}></Input>
+                        <Input inputName='password' inputType='password' inputPlaceholder='Password' label='Password' changed={(event) => this.changedInput(event)}></Input>
+                        <button type='submit' onClick={(event) => this.processLogin(event)}>Log In</button>
+                    </form>
+                </div>
             </Fragment>
         )
     }
