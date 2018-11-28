@@ -37,8 +37,8 @@ class Login extends Component {
                 <Header loggedIn={this.props.loggedIn}/>
                 <div className='formBox'>
                     <form>
-                        <Input inputName='email' inputType='text' inputPlaceholder='Email Address' label='Email Address' changed={(event) => this.changedInput(event)}></Input>
-                        <Input inputName='password' inputType='password' inputPlaceholder='Password' label='Password' changed={(event) => this.changedInput(event)}></Input>
+                        <Input inputName='email' elementType='input' inputPlaceholder='Email Address' label='Email Address' changed={(event) => this.changedInput(event)}></Input>
+                        <Input inputName='password' elementType='password' inputPlaceholder='Password' label='Password' changed={(event) => this.changedInput(event)}></Input>
                         <button type='submit' onClick={(event) => this.processLogin(event)}>Log In</button>
                     </form>
                 </div>

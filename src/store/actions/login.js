@@ -20,7 +20,7 @@ export const startLogin = (user) => {
         //   dispatch(fetchPostsSuccess(res.data))
         })
         .catch(err => {
-          console.log(err)
+          console.log('Incorrect Login Information');
         });
     }
 }

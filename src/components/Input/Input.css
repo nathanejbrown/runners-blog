@@ -4,7 +4,7 @@
     margin-bottom: 2px;
 }
 
-.InputElement {
+.Input {
     border: 1px solid #ccc;
     background-color: white;
     font: inherit;
@@ -15,6 +15,6 @@
     box-sizing: border-box;
 }
 
-.InputElement:focus {
+.Input:focus {
     background-color: #ccc;
 }
