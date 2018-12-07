@@ -7,6 +7,7 @@ const Input = (props) => {
     switch (props.elementType) {
         case ('input'):
             inputElement = <input
+            className='form-control'
             value={props.value}
             onChange={props.changed}
             placeholder={props.inputPlaceholder}
@@ -31,7 +32,8 @@ const Input = (props) => {
             )
         break;
         case ('password'):
-            inputElement = <input 
+            inputElement = <input
+                    className='form-control'
                     type='password'
                     onChange={props.changed}
                     placeholder={props.inputPlaceholder}
@@ -46,10 +48,10 @@ const Input = (props) => {
     }
 
     return (
-    <div className='Input'>
-        <label className='Label'>{props.label}</label>
-        {inputElement}
-    </div>
+        <div>
+            <label className='Label'>{props.label}</label>
+            {inputElement}
+        </div>
     )
 };
     

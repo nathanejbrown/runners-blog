@@ -35,13 +35,19 @@ class Login extends Component {
         return (
             <Fragment>
                 <Header loggedIn={this.props.loggedIn}/>
-                <div className='formBox'>
-                    <form>
-                        <Input inputName='email' elementType='input' inputPlaceholder='Email Address' label='Email Address' changed={(event) => this.changedInput(event)}></Input>
-                        <Input inputName='password' elementType='password' inputPlaceholder='Password' label='Password' changed={(event) => this.changedInput(event)}></Input>
-                        <button type='submit' onClick={(event) => this.processLogin(event)}>Log In</button>
-                    </form>
-                </div>
+                    <div className='formBox d-flex flex-column align-items-center'>
+                        <form>
+                            <div className='form-group col-sm-12'>
+                                <Input inputName='email' elementType='input' inputPlaceholder='Email Address' label='Email Address' changed={(event) => this.changedInput(event)}></Input>
+                            </div>
+                            <div className='form-group col-sm-12'>
+                                <Input inputName='password' elementType='password' inputPlaceholder='Password' label='Password' changed={(event) => this.changedInput(event)}></Input>
+                            </div>
+                            <div className='form-group col-sm-12'>
+                                <button type='button' className='btn btn-primary' onClick={(event) => this.processLogin(event)}>Log In</button>
+                            </div>
+                        </form>
+                    </div>
             </Fragment>
         )
     }
