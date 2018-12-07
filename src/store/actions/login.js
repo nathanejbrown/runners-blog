@@ -16,11 +16,10 @@ export const startLogin = (user) => {
         }
         axios.post('/auth', authData)
         .then(res => {
-            console.log(res)
-        //   dispatch(fetchPostsSuccess(res.data))
+            localStorage.setItem('token', res.data.myToken)
         })
         .catch(err => {
-          console.log('Incorrect Login Information');
+          console.log(err);
         });
     }
 }
