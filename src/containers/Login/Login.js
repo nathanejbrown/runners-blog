@@ -5,6 +5,7 @@ import Input from '../../components/Input/Input';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
 import {updateObject} from '../../shared/utility';
+import { Redirect } from 'react-router-dom';
 
 class Login extends Component {
 
@@ -32,8 +33,14 @@ class Login extends Component {
 
     render () {
 
+        let authRedirect = null;
+        if (this.props.loggedIn) {
+            authRedirect = <Redirect to={'/profile'} />
+        }
+
         return (
             <Fragment>
+                {authRedirect}
                 <Header loggedIn={this.props.loggedIn}/>
                     <div className='formBox d-flex flex-column align-items-center'>
                         <form>

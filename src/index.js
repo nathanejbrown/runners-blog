@@ -11,12 +11,14 @@ import thunk from 'redux-thunk';
 
 import postsReducer from './store/reducers/posts';
 import loginReducer from './store/reducers/login';
+import profileReducer from './store/reducers/profile';
 
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
 const rootReducer = combineReducers({
     posts: postsReducer,
-    login: loginReducer
+    login: loginReducer,
+    profile: profileReducer
   })
   
 const store = createStore(rootReducer, composeEnhancers(

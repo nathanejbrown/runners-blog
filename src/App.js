@@ -4,6 +4,7 @@ import './App.css';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import HomePage from './containers/HomePage/HomePage';
 import Login from './containers/Login/Login';
+import Profile from './containers/Profile/Profile';
 
 // const asyncLogin = asyncComponent(() => {
 //   return import('./containers/Login/Login');
@@ -19,6 +20,7 @@ class App extends Component {
     let routes = (
       <Switch>
         <Route path="/login" component={Login} />
+        <Route path="/profile" component={Profile} />
         <Route path="/" exact component={HomePage} />
         <Redirect to="/" />
       </Switch>

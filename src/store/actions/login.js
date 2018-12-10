@@ -9,7 +9,6 @@ export const sendLoginInfo = () => {
 
 export const startLogin = (user) => {
     return dispatch => {
-        dispatch(sendLoginInfo())
         const authData = {
             email: user.email,
             password: user.password
@@ -17,6 +16,7 @@ export const startLogin = (user) => {
         axios.post('/auth', authData)
         .then(res => {
             localStorage.setItem('token', res.data.myToken)
+            dispatch(sendLoginInfo())
         })
         .catch(err => {
           console.log(err);
