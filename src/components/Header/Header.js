@@ -6,7 +6,7 @@ const header = (props) => {
     let headerLoginButton;
 
     if (props.loggedIn) {
-        headerLoginButton = (<h3 className="loginButton"><a href="/login">Log Out</a></h3>);
+        headerLoginButton = (<h3 className="loginButton"><a href="/logout">Log Out</a></h3>);
     } else {
         headerLoginButton = (<h3 className="loginButton"><a href="/login">Log In</a></h3>);
     }

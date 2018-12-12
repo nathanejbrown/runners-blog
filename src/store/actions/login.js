@@ -7,6 +7,13 @@ export const sendLoginInfo = () => {
     }
 }
 
+export const logout = () => {
+    localStorage.removeItem('token');
+    return {
+        type: actionTypes.LOGOUT
+    }
+}
+
 export const startLogin = (user) => {
     return dispatch => {
         const authData = {
