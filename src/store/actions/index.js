@@ -5,7 +5,8 @@ export {
 export {
     startLogin,
     checkLogin,
-    redirect
+    redirect,
+    logout
 } from './login'
 
 export {

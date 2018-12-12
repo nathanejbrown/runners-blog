@@ -29,7 +29,7 @@ const mapStateToProps = state => {
     return {
         posts: state.posts.posts,
         loading: state.posts.loading,
-        loggedIn: state.login.loggedIn
+        loggedIn: localStorage.getItem('token') !== null
     }
 }
 

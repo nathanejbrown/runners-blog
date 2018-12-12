@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import HomePage from './containers/HomePage/HomePage';
 import Login from './containers/Login/Login';
 import Profile from './containers/Profile/Profile';
+import Logout from './containers/Logout/Logout';
 
 // const asyncLogin = asyncComponent(() => {
 //   return import('./containers/Login/Login');
@@ -29,6 +30,7 @@ class App extends Component {
     if (this.props.loggedIn) {
       routes = (
         <Switch>
+          <Route path="/logout" component={Logout} />
           <Route path="/login" component={Login} />
           <Route path="/profile" component={Profile} />
           <Route path="/" exact component={HomePage} />
