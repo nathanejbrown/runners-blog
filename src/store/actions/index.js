@@ -3,9 +3,12 @@ export {
 } from './posts'
 
 export {
-    startLogin
+    startLogin,
+    checkLogin,
+    redirect
 } from './login'
 
 export {
-    getProfileInfo
+    getProfileInfo,
+    startRetrievingData
 } from './profile'

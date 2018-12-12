@@ -33,43 +33,45 @@ class Login extends Component {
 
     render () {
 
-        let authRedirect = null;
         if (this.props.loggedIn) {
-            authRedirect = <Redirect to={'/profile'} />
+            return (<Redirect to='/profile' />)
         }
 
         return (
             <Fragment>
-                {authRedirect}
-                <Header loggedIn={this.props.loggedIn}/>
-                    <div className='formBox d-flex flex-column align-items-center'>
-                        <form>
-                            <div className='form-group col-sm-12'>
-                                <Input inputName='email' elementType='input' inputPlaceholder='Email Address' label='Email Address' changed={(event) => this.changedInput(event)}></Input>
-                            </div>
-                            <div className='form-group col-sm-12'>
-                                <Input inputName='password' elementType='password' inputPlaceholder='Password' label='Password' changed={(event) => this.changedInput(event)}></Input>
-                            </div>
-                            <div className='form-group col-sm-12'>
-                                <button type='button' className='btn btn-primary' onClick={(event) => this.processLogin(event)}>Log In</button>
-                            </div>
-                        </form>
-                    </div>
+                <Header loggedIn={this.props.loggedIn} />
+                <div className='formBox d-flex flex-column align-items-center'>
+                    <form>
+                        <div className='form-group col-sm-12'>
+                            <Input inputName='email' elementType='input' inputPlaceholder='Email Address' label='Email Address' changed={(event) => this.changedInput(event)}></Input>
+                        </div>
+                        <div className='form-group col-sm-12'>
+                            <Input inputName='password' elementType='password' inputPlaceholder='Password' label='Password' changed={(event) => this.changedInput(event)}></Input>
+                        </div>
+                        <div className='form-group col-sm-12'>
+                            <button type='button' className='btn btn-primary' onClick={(event) => this.processLogin(event)}>Log In</button>
+                        </div>
+                    </form>
+                </div>
             </Fragment>
         )
+
     }
 }
 
 const mapStateToProps = state => {
     return {
         loading: state.posts.loading,
-        loggedIn: state.login.loggedIn
+        loggedIn: localStorage.getItem('token') !== null,
+        redirect: state.login.redirectPath
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onStartLogin: (user) => dispatch(actions.startLogin(user))
+        onStartLogin: (user) => dispatch(actions.startLogin(user)),
+        redirect: (path) => dispatch(actions.redirect(path)),
+        getProfileInfo: (token) => dispatch(actions.getProfileInfo(token))
     }
 }
 

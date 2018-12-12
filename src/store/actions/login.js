@@ -23,3 +23,15 @@ export const startLogin = (user) => {
         });
     }
 }
+
+export const redirect = (path) => {
+    return {
+        type: actionTypes.REDIRECT,
+        redirect: path
+    }
+}
+
+export const checkLogin = () => {
+    let token = localStorage.getItem('token') || null;
+    return token ? true : false
+}
