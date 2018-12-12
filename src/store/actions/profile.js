@@ -8,8 +8,15 @@ export const handleProfileInfo = (message) => {
     }
 }
 
+export const startRetrievingData = () => {
+    return {
+        type: actionTypes.START_RETRIEVING_PROFILE_DATA
+    }
+}
+
 export const getProfileInfo = (jwt) => {
     return dispatch => {
+        dispatch(startRetrievingData())
         axios.get('/profile',
         {headers: {
             'Authorization' : `Bearer ${jwt}`

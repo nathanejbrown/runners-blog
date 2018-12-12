@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 // import asyncComponent from './hoc/asyncComponent/asyncComponent';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import HomePage from './containers/HomePage/HomePage';
 import Login from './containers/Login/Login';
 import Profile from './containers/Profile/Profile';
@@ -20,11 +21,21 @@ class App extends Component {
     let routes = (
       <Switch>
         <Route path="/login" component={Login} />
-        <Route path="/profile" component={Profile} />
         <Route path="/" exact component={HomePage} />
         <Redirect to="/" />
       </Switch>
     )
+
+    if (this.props.loggedIn) {
+      routes = (
+        <Switch>
+          <Route path="/login" component={Login} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/" exact component={HomePage} />
+          <Redirect to="/" />
+        </Switch>
+      )
+    }
 
     return (
       <div>
@@ -34,4 +45,10 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    loggedIn: localStorage.getItem('token') !== null
+  }
+}
+
+export default withRouter(connect(mapStateToProps, null)(App));
