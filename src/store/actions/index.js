@@ -11,5 +11,6 @@ export {
 
 export {
     getProfileInfo,
-    startRetrievingData
+    startRetrievingData,
+    profileInfoFailure
 } from './profile'

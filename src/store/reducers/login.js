@@ -2,19 +2,13 @@ import { updateObject } from '../../shared/utility';
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-    loggedIn: false, 
+    loggedIn: localStorage.getItem('token') != null, 
     redirectPath: null
 }
 
-const handleLogin = (state, action) => {
+const handleLoggedInChange = (state, action) => {
     return updateObject(state, {
-        loggedIn: true
-    })
-}
-
-const handleLogout = (state, action) => {
-    return updateObject(state, {
-        loggedIn: false
+        loggedIn: localStorage.getItem('token') != null
     })
 }
 
@@ -26,9 +20,9 @@ const handleRedirect = (state, action) => {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.SEND_LOGIN_INFO: return handleLogin(state, action);
+        case actionTypes.LOGIN: return handleLoggedInChange(state, action);
         case actionTypes.REDIRECT: return handleRedirect(state, action);
-        case actionTypes.LOGOUT: return handleLogout(state, action);
+        case actionTypes.LOGOUT: return handleLoggedInChange(state, action);
         default: return state;
     }
 }

@@ -14,6 +14,12 @@ export const startRetrievingData = () => {
     }
 }
 
+export const profileInfoFailure = () => {
+    return {
+        type: actionTypes.PROFILE_INFO_FAILURE
+    }
+}
+
 export const getProfileInfo = (jwt) => {
     return dispatch => {
         dispatch(startRetrievingData())
@@ -26,7 +32,8 @@ export const getProfileInfo = (jwt) => {
             dispatch(handleProfileInfo(res.data.message))
         })
         .catch(err => {
-          console.log(err);
+            dispatch(profileInfoFailure())
+            console.log(err);
         });
     }
 }

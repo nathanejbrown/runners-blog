@@ -18,13 +18,17 @@ class Profile extends Component {
     render () {
 
         let messageFromBackend = <Spinner />
-        if (!this.props.loading) {
+
+        if (!this.props.loading && !this.props.message) {
+            this.props.logout()
+            this.props.redirect(<Redirect to={'/'} />);
+        }
+        else if (!this.props.loading) {
             messageFromBackend = <h1>{this.props.message}</h1>
         }
 
         return (
             <Fragment>
-                <h1>hello</h1>
                 {messageFromBackend}
                 {this.props.redirectPath}
             </Fragment>
@@ -35,7 +39,7 @@ class Profile extends Component {
 const mapStateToProps = state => {
     return {
         message: state.profile.message,
-        loggedIn: localStorage.getItem('token') !== null,
+        loggedIn: state.login.loggedIn,
         redirectPath: state.login.redirectPath,
         loading: state.profile.loading
     }
@@ -44,7 +48,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         getProfileInfo: (token) => dispatch(actions.getProfileInfo(token)),
-        redirect: (path) => dispatch(actions.redirect(path))
+        redirect: (path) => dispatch(actions.redirect(path)),
+        logout: () => dispatch(actions.logout())
     }
 }
 

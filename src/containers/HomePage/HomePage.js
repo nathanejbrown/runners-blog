@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import FloatingBox from '../../components/FloatingBox/FloatingBox';
-import Header from '../../components/Header/Header';
 import BlogPost from '../../components/BlogPost/BlogPost';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
@@ -15,7 +14,6 @@ class HomePage extends Component {
     render () {
         return (
             <Fragment>
-                <Header loggedIn={this.props.loggedIn} />
                 <div className="App">
                 <FloatingBox />
                 <BlogPost post={this.props.posts} />
@@ -29,7 +27,7 @@ const mapStateToProps = state => {
     return {
         posts: state.posts.posts,
         loading: state.posts.loading,
-        loggedIn: localStorage.getItem('token') !== null
+        loggedIn: state.login.loggedIn,
     }
 }
 

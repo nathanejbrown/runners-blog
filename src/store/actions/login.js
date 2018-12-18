@@ -1,9 +1,9 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios-posts';
 
-export const sendLoginInfo = () => {
+export const login = () => {
     return {
-      type: actionTypes.SEND_LOGIN_INFO
+      type: actionTypes.LOGIN
     }
 }
 
@@ -23,7 +23,7 @@ export const startLogin = (user) => {
         axios.post('/auth', authData)
         .then(res => {
             localStorage.setItem('token', res.data.myToken)
-            dispatch(sendLoginInfo())
+            dispatch(login())
         })
         .catch(err => {
           console.log(err);

@@ -11,8 +11,6 @@
 .innerHeader {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
 }
 
 .headerH3 {
@@ -29,6 +27,9 @@
     .header {
         justify-content: center;
         width: auto;
+    }
+    .innerHeader {
+        display: none;
     }
 }
 

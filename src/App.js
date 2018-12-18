@@ -7,6 +7,7 @@ import HomePage from './containers/HomePage/HomePage';
 import Login from './containers/Login/Login';
 import Profile from './containers/Profile/Profile';
 import Logout from './containers/Logout/Logout';
+import Layout from './hoc/Layout/Layout';
 
 // const asyncLogin = asyncComponent(() => {
 //   return import('./containers/Login/Login');
@@ -41,7 +42,9 @@ class App extends Component {
 
     return (
       <div>
-        {routes}
+        <Layout>
+          {routes}
+        </Layout>
       </div>
     );
   }
@@ -49,7 +52,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    loggedIn: localStorage.getItem('token') !== null
+    loggedIn: state.login.loggedIn
   }
 }
 

@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import './Login.css';
-import Header from '../../components/Header/Header';
 import Input from '../../components/Input/Input';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
@@ -39,7 +38,6 @@ class Login extends Component {
 
         return (
             <Fragment>
-                <Header loggedIn={this.props.loggedIn} />
                 <div className='formBox d-flex flex-column align-items-center'>
                     <form>
                         <div className='form-group col-sm-12'>
@@ -62,7 +60,7 @@ class Login extends Component {
 const mapStateToProps = state => {
     return {
         loading: state.posts.loading,
-        loggedIn: localStorage.getItem('token') !== null,
+        loggedIn: state.login.loggedIn,
         redirect: state.login.redirectPath
     }
 }
