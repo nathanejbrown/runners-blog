@@ -19,10 +19,17 @@ const startLoading = (state, action) => {
     })
 }
 
+const noProfileInfo = (state) => {
+    return updateObject(state, {
+        loading: false
+    })
+}
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
       case actionTypes.GET_PROFILE_INFO: return setMessage(state, action);
       case actionTypes.START_RETRIEVING_PROFILE_DATA: return startLoading(state, action);
+      case actionTypes.PROFILE_INFO_FAILURE: return noProfileInfo(state);
       default: return state;
     }
 }
