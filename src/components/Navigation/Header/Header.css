@@ -13,14 +13,21 @@
     flex-direction: row;
 }
 
-.headerH3 {
+.headerH3 a {
     margin: 0;
     color: white;
     padding-left: 15px;
 }
 
-.loginButton {
-    padding-right: 15px;
+.innerHeader h3 a {
+    text-decoration: none;
+    color: white;
+}
+
+@media (max-width: 499px) {
+    .desktopOnly {
+        display: none;
+    }
 }
 
 @media (max-width: 800px) {
@@ -38,5 +45,29 @@
         position: absolute;
         top: 10vh;
         left: 5vw;
+    }
+}
+
+.DrawerToggle {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.DrawerToggle div {
+    width: 90%;
+    height: 3px;
+    background-color: white;
+}
+
+@media (min-width: 500px) {
+    .DrawerToggle {
+        display: none;
     }
 }
