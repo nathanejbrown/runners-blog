@@ -19,11 +19,7 @@ class Profile extends Component {
 
         let messageFromBackend = <Spinner />
 
-        if (!this.props.loading && !this.props.message) {
-            this.props.logout()
-            this.props.redirect(<Redirect to={'/'} />);
-        }
-        else if (!this.props.loading) {
+        if (!this.props.loading) {
             messageFromBackend = <h1>{this.props.message}</h1>
         }
 

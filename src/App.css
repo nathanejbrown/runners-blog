@@ -7,11 +7,6 @@
   background-repeat: no-repeat;
 }
 
-h3 a {
-  text-decoration: none;
-  color: white;
-}
-
 @media (max-width: 800px) {
   .App {
     display: flex;

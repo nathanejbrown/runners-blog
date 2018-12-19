@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
-import './Header.css';
-
-const header = (props) => {
+import './NavigationItems.css';
+    
+const NavigationItems = (props) => {
 
     let allButtons;
 
@@ -17,13 +17,11 @@ const header = (props) => {
     }
 
     return (
-        <div className="header">
-            <h3 className="headerH3"><a href="/">Running Blog Thing</a></h3>
-            <div className="innerHeader">
-                {allButtons}
-            </div>
-        </div>
+        <Fragment>
+            {allButtons}
+        </Fragment>
     )
+
 }
 
-export default header;
+export default NavigationItems
