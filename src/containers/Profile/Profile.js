@@ -13,6 +13,7 @@ class Profile extends Component {
         } else {
             this.props.getProfileInfo(token)
         }
+        this.props.updateCurrentPath(this.props.location.pathname)
     }
 
     render () {
@@ -37,7 +38,8 @@ const mapStateToProps = state => {
         message: state.profile.message,
         loggedIn: state.login.loggedIn,
         redirectPath: state.login.redirectPath,
-        loading: state.profile.loading
+        loading: state.profile.loading,
+        currentPath: state.layout.path
     }
 }
 
@@ -45,7 +47,8 @@ const mapDispatchToProps = dispatch => {
     return {
         getProfileInfo: (token) => dispatch(actions.getProfileInfo(token)),
         redirect: (path) => dispatch(actions.redirect(path)),
-        logout: () => dispatch(actions.logout())
+        logout: () => dispatch(actions.logout()),
+        updateCurrentPath: (path) => dispatch(actions.updateCurrentPath(path))
     }
 }
 

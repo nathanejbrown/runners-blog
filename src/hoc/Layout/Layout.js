@@ -14,11 +14,12 @@ class Layout extends Component {
         })
     }
 
+    
     render () {
         return (
             <Fragment>
-                <Header loggedIn={this.props.loggedIn} toggle={this.sideDrawerToggleHandler} />
-                <SideDrawer loggedIn={this.props.loggedIn} open={this.state.showSideDrawer} toggle={this.sideDrawerToggleHandler} />
+                <Header loggedIn={this.props.loggedIn} toggle={this.sideDrawerToggleHandler} current={this.props.currentPath} />
+                <SideDrawer loggedIn={this.props.loggedIn} open={this.state.showSideDrawer} toggle={this.sideDrawerToggleHandler} current={this.props.currentPath} />
                 <main>
                     {this.props.children}
                 </main>
@@ -29,7 +30,8 @@ class Layout extends Component {
 
 const mapStateToProps = state => {
     return {
-        loggedIn: state.login.loggedIn
+        loggedIn: state.login.loggedIn,
+        currentPath: state.layout.path
     }
 }
 

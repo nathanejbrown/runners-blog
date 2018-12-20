@@ -5,10 +5,12 @@ const NavigationItems = (props) => {
 
     let allButtons;
 
+    let alternatingButton = props.current === '/' ? <h3 className="loginButton"><a href="/profile">Profile</a></h3> : <h3 className="loginButton"><a href="/home">Home</a></h3>
+
     if (props.loggedIn) {
         allButtons = (
             <Fragment>
-                <h3 className="loginButton"><a href="/profile">Profile</a></h3>
+                {alternatingButton}
                 <h3 className="loginButton"><a href="/logout">Log Out</a></h3>
             </Fragment>
         );
