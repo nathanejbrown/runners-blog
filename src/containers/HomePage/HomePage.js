@@ -7,6 +7,10 @@ import './HomePage.css';
 
 class HomePage extends Component {
 
+    componentWillMount() {
+        this.props.updateCurrentPath(this.props.location.pathname)
+    }
+
     componentDidMount() {
         this.props.onFetchNewestPost();
     }
@@ -27,13 +31,14 @@ const mapStateToProps = state => {
     return {
         posts: state.posts.posts,
         loading: state.posts.loading,
-        loggedIn: state.login.loggedIn,
+        loggedIn: state.login.loggedIn
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchNewestPost: () => dispatch(actions.fetchNewestPost())
+        onFetchNewestPost: () => dispatch(actions.fetchNewestPost()),
+        updateCurrentPath: (path) => dispatch(actions.updateCurrentPath(path))
     }
 }
 

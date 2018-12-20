@@ -14,7 +14,7 @@ const header = (props) => {
                 </div>
                 <h3 className="headerH3"><a href="/">Running Blog Thing</a></h3>
                 <div className="innerHeader desktopOnly">
-                    <NavigationItems loggedIn={props.loggedIn} />
+                    <NavigationItems loggedIn={props.loggedIn} current={props.current} />
                 </div>
             </div>
         </Fragment>

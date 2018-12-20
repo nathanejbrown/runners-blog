@@ -14,3 +14,7 @@ export {
     startRetrievingData,
     profileInfoFailure
 } from './profile'
+
+export {
+    updateCurrentPath
+} from './layout'
