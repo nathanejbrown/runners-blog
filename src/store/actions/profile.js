@@ -1,10 +1,11 @@
 import axios from '../../axios-posts';
 import * as actionTypes from './actionTypes';
 
-export const handleProfileInfo = (message) => {
+export const handleProfileInfo = (data) => {
     return {
         type: actionTypes.GET_PROFILE_INFO,
-        message: message
+        message: data.message,
+        name: data.name
     }
 }
 
@@ -29,7 +30,7 @@ export const getProfileInfo = (jwt) => {
           }
         })
         .then(res => {
-            dispatch(handleProfileInfo(res.data.message))
+            dispatch(handleProfileInfo(res.data))
         })
         .catch(err => {
             dispatch(profileInfoFailure())

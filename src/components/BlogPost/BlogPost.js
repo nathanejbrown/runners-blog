@@ -9,7 +9,7 @@ const blogPost = (props) => {
     let postBody = props.post ? props.post.body : 'Was found'
     let loadingAnimation = props.loading ? <Spinner /> : null
     return (
-        <div className='blog'>
+        <div className='post'>
             {loadingAnimation}
             <h1 className='title'>{postTitle}</h1>
             <p>{postBody}</p>

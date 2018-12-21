@@ -14,6 +14,13 @@ export const fetchPostsSuccess = (posts) => {
     }
 }
 
+export const newPostSuccess = (post) => {
+  return {
+    type: actionTypes.NEW_POST_SUCCESS,
+    post: post
+  }
+}
+
 export const fetchNewestPost = () => {
     return dispatch => {
       dispatch(fetchPostsStart())
@@ -26,3 +33,20 @@ export const fetchNewestPost = () => {
       });
     }
   }
+
+export const createNewPost = (post) => {
+  const newPost = {
+    title: post.title,
+    body: post.body
+  }
+  return dispatch => {
+    axios.post('posts/new', newPost)
+    .then(res => {
+      console.log(res)
+      dispatch(newPostSuccess(res.data[0]))
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+}

@@ -1,5 +1,6 @@
 export const FETCH_POSTS_START = 'FETCH_POSTS_START';
 export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
+export const NEW_POST_SUCCESS = 'NEW_POST_SUCCESS';
 
 export const START_LOGIN = 'START_LOGIN';
 export const LOGIN = 'LOGIN';

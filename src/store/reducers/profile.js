@@ -3,13 +3,15 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
     message: null,
-    loading: false
+    loading: false,
+    name: null
 }
 
 const setMessage = (state, action) => {
     return updateObject(state, {
         message: action.message,
-        loading: false
+        loading: false,
+        name: action.name
       });
 }
 
