@@ -19,10 +19,10 @@ class HomePage extends Component {
         return (
             <Fragment>
                 <div className="App">
-                <FloatingBox />
-                <div className='blog'>
-                    <BlogPost post={this.props.posts} />
-                </div>
+                    <FloatingBox />
+                    <div className='blog'>
+                        <BlogPost post={this.props.posts} />
+                    </div>
                 </div>
             </Fragment>
         )

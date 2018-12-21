@@ -12,3 +12,9 @@
     padding: 10px;
     margin: 0;
 }
+
+@media (max-width: 800px) {
+    .post {
+        max-width: 80vw;
+    }
+}

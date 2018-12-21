@@ -28,6 +28,11 @@
     .desktopOnly {
         display: none;
     }
+    /* .header {
+        position: fixed;
+        left: 0;
+        right: 0;
+    } */
 }
 
 @media (max-width: 800px) {
