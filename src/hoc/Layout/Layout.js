@@ -3,10 +3,15 @@ import { connect } from 'react-redux';
 import Header from '../../components/Navigation/Header/Header';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
 import './Layout.css'
+import { checkLogin } from '../../store/actions/index';
 
 class Layout extends Component {
     state = {
         showSideDrawer: false
+    }
+
+    componentWillMount() {
+        this.props.checkLogin()
     }
 
     sideDrawerToggleHandler = () => {
@@ -49,4 +54,10 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(Layout);
+const mapDispatchToProps = dispatch => {
+    return {
+        checkLogin: () => dispatch(checkLogin())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

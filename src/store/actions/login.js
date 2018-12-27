@@ -9,6 +9,7 @@ export const login = () => {
 
 export const logout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('expirationDate');
     return {
         type: actionTypes.LOGOUT
     }
@@ -22,7 +23,9 @@ export const startLogin = (user) => {
         }
         axios.post('/auth', authData)
         .then(res => {
-            localStorage.setItem('token', res.data.myToken)
+            const expirationDate = new Date(new Date().getTime() + 7200 * 1000);
+            localStorage.setItem('token', res.data.myToken);
+            localStorage.setItem('expirationDate', expirationDate);
             dispatch(login())
         })
         .catch(err => {
@@ -39,6 +42,14 @@ export const redirect = (path) => {
 }
 
 export const checkLogin = () => {
-    let token = localStorage.getItem('token') || null;
-    return token ? true : false
+    return dispatch => {
+        let token = localStorage.getItem('token') || null;
+        let expirationDate = new Date(localStorage.getItem('expirationDate') || null);
+        if (!token) {
+            dispatch(logout())
+        }
+        if (!expirationDate || expirationDate <= new Date()) {
+            dispatch(logout())
+        }
+    }
 }
