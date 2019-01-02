@@ -14,11 +14,13 @@ class Profile extends Component {
         post: {
             title: '',
             body: ''
-        }
+        },
+        token: null
     }
     
     componentWillMount() {
         let token = localStorage.getItem('token') || null;
+        this.setState({token: token})
         if (!token) {
             this.props.redirect(<Redirect to={'/'} />);
         } else {
@@ -39,7 +41,7 @@ class Profile extends Component {
     
     sendNewPost = (event) => {
         event.preventDefault();
-        this.props.createNewPost(this.state.post);
+        this.props.createNewPost(this.state.post, this.state.token);
     }
 
     render () {
@@ -99,7 +101,7 @@ const mapDispatchToProps = dispatch => {
         redirect: (path) => dispatch(actions.redirect(path)),
         logout: () => dispatch(actions.logout()),
         updateCurrentPath: (path) => dispatch(actions.updateCurrentPath(path)),
-        createNewPost: (post) => dispatch(actions.createNewPost(post))
+        createNewPost: (post, token) => dispatch(actions.createNewPost(post, token))
     }
 }
 

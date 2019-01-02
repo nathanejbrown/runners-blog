@@ -34,13 +34,16 @@ export const fetchNewestPost = () => {
     }
   }
 
-export const createNewPost = (post) => {
+export const createNewPost = (post, jwt) => {
   const newPost = {
     title: post.title,
     body: post.body
   }
   return dispatch => {
-    axios.post('posts/new', newPost)
+    axios.post('posts/new', newPost, {
+      headers: {
+      'Authorization' : `Bearer ${jwt}`
+    }})
     .then(res => {
       console.log(res)
       dispatch(newPostSuccess(res.data[0]))
