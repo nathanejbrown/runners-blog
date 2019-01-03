@@ -8,6 +8,7 @@ import Login from './containers/Login/Login';
 import Profile from './containers/Profile/Profile';
 import Logout from './containers/Logout/Logout';
 import Layout from './hoc/Layout/Layout';
+import MyPosts from './containers/MyPosts/MyPosts';
 
 // const asyncLogin = asyncComponent(() => {
 //   return import('./containers/Login/Login');
@@ -34,6 +35,7 @@ class App extends Component {
           <Route path="/logout" component={Logout} />
           <Route path="/login" component={Login} />
           <Route path="/profile" component={Profile} />
+          <Route path="/myposts" component={MyPosts} />
           <Route path="/" exact component={HomePage} />
           <Redirect to="/" />
         </Switch>

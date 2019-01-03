@@ -1,6 +1,7 @@
 export {
     fetchNewestPost,
-    createNewPost
+    createNewPost,
+    getAllPostsByAuthor
 } from './posts'
 
 export {

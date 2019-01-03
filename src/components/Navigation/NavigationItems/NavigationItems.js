@@ -5,7 +5,20 @@ const NavigationItems = (props) => {
 
     let allButtons;
 
-    let alternatingButton = props.current === '/' ? <h3 className="loginButton"><a href="/profile">Profile</a></h3> : <h3 className="loginButton"><a href="/home">Home</a></h3>
+    let alternatingButton;
+
+    if (props.current === '/') {
+        alternatingButton = <h3 className='loginButton'><a href="/profile">Profile</a></h3>
+    } else if (props.current === '/profile') {
+        alternatingButton = <h3 className="loginButton"><a href="/home">Home</a></h3>
+    } else {
+        alternatingButton = (
+            <Fragment>
+                <h3 className="loginButton"><a href="/home">Home</a></h3>
+                <h3 className='loginButton'><a href="/profile">Profile</a></h3>
+            </Fragment>
+        )
+    }
 
     if (props.loggedIn) {
         allButtons = (

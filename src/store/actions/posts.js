@@ -42,11 +42,28 @@ export const createNewPost = (post, jwt) => {
   return dispatch => {
     axios.post('posts/new', newPost, {
       headers: {
-      'Authorization' : `Bearer ${jwt}`
+      'Authorization': `Bearer ${jwt}`
     }})
     .then(res => {
       console.log(res)
       dispatch(newPostSuccess(res.data[0]))
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+}
+
+export const getAllPostsByAuthor = (jwt) => {
+  return dispatch => {
+    axios.get('/posts/all-by-author', {
+      headers: {
+        'Authorization': `Bearer ${jwt}`
+      }
+    })
+    .then(res => {
+      console.log(res)
+      // dispatch(allPostsByAuthorSuccess(res.data))
     })
     .catch(err => {
       console.log(err)
