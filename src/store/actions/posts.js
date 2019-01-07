@@ -22,15 +22,14 @@ export const newPostSuccess = (post) => {
 }
 
 export const fetchNewestPost = () => {
-    return dispatch => {
-      dispatch(fetchPostsStart())
-      axios.get('posts/newest-post')
-      .then(res => {
+    return async dispatch => {
+      try {
+        dispatch(fetchPostsStart())
+        let res = await axios.get('posts/newest-post')
         dispatch(fetchPostsSuccess(res.data))
-      })
-      .catch(err => {
+      } catch (err) {
         console.log(err)
-      });
+      }
     }
   }
 
