@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+let url = process.env.NODE_ENV === 'production' ? 'https://running-blog.herokuapp.com/' : 'http://localhost:3001/'
+
 const instance = axios.create({
-  baseURL: 'http://localhost:3001/'
+  baseURL: url
 })
 
 export default instance;
