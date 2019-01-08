@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { NavLink } from 'react-router-dom';
 import './NavigationItems.css';
     
 const NavigationItems = (props) => {
@@ -8,14 +9,14 @@ const NavigationItems = (props) => {
     let alternatingButton;
 
     if (props.current === '/') {
-        alternatingButton = <h3 className='loginButton'><a href="/profile">Profile</a></h3>
+        alternatingButton = <h3 className='loginButton'><NavLink to="/profile">Profile</NavLink></h3>
     } else if (props.current === '/profile') {
-        alternatingButton = <h3 className="loginButton"><a href="/home">Home</a></h3>
+        alternatingButton = <h3 className="loginButton"><NavLink to="/home">Home</NavLink></h3>
     } else {
         alternatingButton = (
             <Fragment>
-                <h3 className="loginButton"><a href="/home">Home</a></h3>
-                <h3 className='loginButton'><a href="/profile">Profile</a></h3>
+                <h3 className="loginButton"><NavLink to="/home">Home</NavLink></h3>
+                <h3 className='loginButton'><NavLink to="/profile">Profile</NavLink></h3>
             </Fragment>
         )
     }
@@ -24,11 +25,11 @@ const NavigationItems = (props) => {
         allButtons = (
             <Fragment>
                 {alternatingButton}
-                <h3 className="loginButton"><a href="/logout">Log Out</a></h3>
+                <h3 className="loginButton"><NavLink to="/logout">Log Out</NavLink></h3>
             </Fragment>
         );
     } else {
-        allButtons = (<h3 className="loginButton"><a href="/login">Log In</a></h3>);
+        allButtons = (<h3 className="loginButton"><NavLink to="/login">Log In</NavLink></h3>);
     }
 
     return (
