@@ -14,6 +14,12 @@ export const fetchPostsSuccess = (posts) => {
     }
 }
 
+export const fetchPostsFailure = () => {
+  return {
+    type: actionTypes.FETCH_POSTS_FAILURE
+  }
+}
+
 export const newPostSuccess = (post) => {
   return {
     type: actionTypes.NEW_POST_SUCCESS,
@@ -28,6 +34,7 @@ export const fetchNewestPost = () => {
         let res = await axios.get('posts/newest-post')
         dispatch(fetchPostsSuccess(res.data))
       } catch (err) {
+        dispatch(fetchPostsFailure())
         console.log(err)
       }
     }
