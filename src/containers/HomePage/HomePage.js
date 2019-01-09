@@ -21,7 +21,7 @@ class HomePage extends Component {
                 <div className="App">
                     <FloatingBox />
                     <div className='blog'>
-                        <BlogPost post={this.props.posts} />
+                        <BlogPost post={this.props.posts} loading={this.props.loading} />
                     </div>
                 </div>
             </Fragment>

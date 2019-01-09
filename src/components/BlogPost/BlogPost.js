@@ -14,6 +14,10 @@ const blogPost = (props) => {
                 <p>Was found</p>
             </Fragment>
         )
+    } else if (props.loading) {
+        post = (
+            <Spinner />
+        )
     } else {
         post = (
             <Fragment>
@@ -23,10 +27,8 @@ const blogPost = (props) => {
         )
     }
 
-    let loadingAnimation = props.loading ? <Spinner /> : null
     return (
         <div className='post'>
-            {loadingAnimation}
             {post}
         </div>
     )
