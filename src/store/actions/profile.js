@@ -22,19 +22,17 @@ export const profileInfoFailure = () => {
 }
 
 export const getProfileInfo = (jwt) => {
-    return dispatch => {
-        dispatch(startRetrievingData())
-        axios.get('/profile',
-        {headers: {
-            'Authorization' : `Bearer ${jwt}`
-          }
-        })
-        .then(res => {
+    return async dispatch => {
+        try {
+            dispatch(startRetrievingData())
+            let res = await axios.get('/profile',
+            {headers: {
+                'Authorization' : `Bearer ${jwt}`
+              }
+            })
             dispatch(handleProfileInfo(res.data))
-        })
-        .catch(err => {
-            dispatch(profileInfoFailure())
-            console.log(err);
-        });
+        } catch (err) {
+            console.log(err)
+        }
     }
 }

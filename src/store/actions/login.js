@@ -16,21 +16,20 @@ export const logout = () => {
 }
 
 export const startLogin = (user) => {
-    return dispatch => {
-        const authData = {
-            email: user.email,
-            password: user.password
-        }
-        axios.post('/auth', authData)
-        .then(res => {
+    return async dispatch => {
+        try {
+            const authData = {
+                email: user.email,
+                password: user.password
+            }
+            let res = await axios.post('/auth', authData)
             const expirationDate = new Date(new Date().getTime() + 7200 * 1000);
             localStorage.setItem('token', res.data.myToken);
             localStorage.setItem('expirationDate', expirationDate);
             dispatch(login())
-        })
-        .catch(err => {
-          console.log(err);
-        });
+        } catch (err) {
+            console.log(err)
+        }
     }
 }
 
