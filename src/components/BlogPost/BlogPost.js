@@ -6,6 +6,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 const blogPost = (props) => {
 
     let post = null;
+    let allClasses = props.classes ? props.classes[props.classes.length] = 'post' : ['post']
 
     if (!props.loading && !props.post) {
         post = (
@@ -28,7 +29,7 @@ const blogPost = (props) => {
     }
 
     return (
-        <div className='post'>
+        <div className={allClasses.join(' ')}>
             {post}
         </div>
     )

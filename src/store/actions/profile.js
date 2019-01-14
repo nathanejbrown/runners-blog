@@ -1,6 +1,12 @@
 import axios from '../../axios-posts';
 import * as actionTypes from './actionTypes';
 
+export const startLoading = () => {
+    return {
+        type: actionTypes.START_LOADING
+    }
+}
+
 export const handleProfileInfo = (data) => {
     return {
         type: actionTypes.GET_PROFILE_INFO,
@@ -21,6 +27,13 @@ export const profileInfoFailure = () => {
     }
 }
 
+export const allPostsByAuthor = (posts) => {
+    return {
+        type: actionTypes.ALL_POSTS_BY_AUTHOR,
+        posts: posts
+    }
+}
+
 export const getProfileInfo = (jwt) => {
     return async dispatch => {
         try {
@@ -36,3 +49,19 @@ export const getProfileInfo = (jwt) => {
         }
     }
 }
+
+export const getAllPostsByAuthor = (jwt) => {
+    return async dispatch => {
+      try {
+        dispatch(startLoading())
+        let res = await axios.get('/posts/all-by-author', {
+          headers: {
+            'Authorization': `Bearer ${jwt}`
+          }
+        })
+        dispatch(allPostsByAuthor(res.data))
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  }

@@ -1,7 +1,6 @@
 export {
     fetchNewestPost,
-    createNewPost,
-    getAllPostsByAuthor
+    createNewPost
 } from './posts'
 
 export {
@@ -14,7 +13,9 @@ export {
 export {
     getProfileInfo,
     startRetrievingData,
-    profileInfoFailure
+    profileInfoFailure,
+    getAllPostsByAuthor,
+    startLoading
 } from './profile'
 
 export {

@@ -26,6 +26,10 @@
     transform: translateX(-100%);
 }
 
+.sideDrawerNav {
+    padding-top: 70px;
+}
+
 h3 a {
     text-decoration: none;
     color: black;

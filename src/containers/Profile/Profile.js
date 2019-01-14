@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import BlogPost from '../../components/BlogPost/BlogPost';
-import Input from '../../components/Input/Input';
 import { updateObject } from '../../shared/utility';
 import './Profile.css';
 
@@ -25,6 +24,7 @@ class Profile extends Component {
             this.props.redirect(<Redirect to={'/'} />);
         } else {
             this.props.getProfileInfo(token)
+            this.props.getAllPostsByAuthor(token)
         }
         this.props.updateCurrentPath(this.props.location.pathname)
     }
@@ -47,36 +47,46 @@ class Profile extends Component {
     render () {
 
         let messageFromBackend = <Spinner />
-        let formOrPost = (
-            <div className='d-flex flex-column align-items-center'>
-                <form>
-                    <div className='form-group col-sm-12'>
-                        <Input inputName='title' elementType='input' inputPlaceholder='Title' label='Title' changed={(event) => this.changedInput(event)}></Input>
-                    </div>
-                    <div className='form-group col-sm-12'>
-                        <Input inputName='body' elementType='input' inputPlaceholder='Body' label='Body' changed={(event) => this.changedInput(event)}></Input>
-                    </div>
-                    <div className='form-group col-sm-12'>
-                        <button type='button' className='btn btn-primary' onClick={(event) => this.sendNewPost(event)}>Log In</button>
-                    </div>
-                </form>
-            </div>
-        );
+        let allPosts;
+        // (
+        //     <div className='d-flex flex-column align-items-center'>
+        //         <form>
+        //             <div className='form-group col-sm-12'>
+        //                 <Input inputName='title' elementType='input' inputPlaceholder='Title' label='Title' changed={(event) => this.changedInput(event)}></Input>
+        //             </div>
+        //             <div className='form-group col-sm-12'>
+        //                 <Input inputName='body' elementType='input' inputPlaceholder='Body' label='Body' changed={(event) => this.changedInput(event)}></Input>
+        //             </div>
+        //             <div className='form-group col-sm-12'>
+        //                 <button type='button' className='btn btn-primary' onClick={(event) => this.sendNewPost(event)}>Submit</button>
+        //             </div>
+        //         </form>
+        //     </div>
+        // );
 
-        if (!this.props.loading) {
+        if (!this.props.loading && this.props.posts) {
             messageFromBackend = <h1>{this.props.message}{this.props.name}</h1>
+            let formattedPosts = this.props.posts.map((post) => {
+                return <BlogPost post={post} loading={this.props.loading} key={post.id} />
+            })
+            allPosts = (
+                <div className='postsContainer'>
+                    {formattedPosts}
+                </div>
+            )
         }
 
-        if (this.props.newPost) {
-            formOrPost = <BlogPost post={this.props.newPost} />
-        }
+        // if (this.props.newPost) {
+        //     formOrPost = <BlogPost post={this.props.newPost} />
+        // }
 
         return (
             <Fragment>
                 <div className='profileContainer'>
                     {messageFromBackend}
                     {this.props.redirectPath}
-                    {formOrPost}
+                    {allPosts}
+                    {/* {formOrPost} */}
                 </div>
             </Fragment>
         )
@@ -91,7 +101,8 @@ const mapStateToProps = state => {
         loading: state.profile.loading,
         currentPath: state.layout.path,
         name: state.profile.name,
-        newPost: state.posts.newPost
+        newPost: state.posts.newPost,
+        posts: state.profile.posts
     }
 }
 
@@ -101,7 +112,8 @@ const mapDispatchToProps = dispatch => {
         redirect: (path) => dispatch(actions.redirect(path)),
         logout: () => dispatch(actions.logout()),
         updateCurrentPath: (path) => dispatch(actions.updateCurrentPath(path)),
-        createNewPost: (post, token) => dispatch(actions.createNewPost(post, token))
+        createNewPost: (post, token) => dispatch(actions.createNewPost(post, token)),
+        getAllPostsByAuthor: (token) => dispatch(actions.getAllPostsByAuthor(token))
     }
 }
 

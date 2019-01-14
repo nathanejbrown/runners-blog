@@ -21,15 +21,15 @@ const rootReducer = combineReducers({
     login: loginReducer,
     profile: profileReducer,
     layout: layoutReducer
-  })
-  
+})
+
 const store = createStore(rootReducer, composeEnhancers(
     applyMiddleware(thunk)
-));
-
-const app = (
+    ));
+    
+    const app = (
     <Provider store={store}>
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
             <App />
         </BrowserRouter>
     </Provider>

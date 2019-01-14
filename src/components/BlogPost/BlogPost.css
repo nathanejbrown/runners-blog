@@ -6,6 +6,7 @@
     overflow: scroll;
     background: #ccc;
     opacity: 0.7;
+    margin: 10px;
 }
 
 .post * {

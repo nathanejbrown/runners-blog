@@ -58,18 +58,3 @@ export const createNewPost = (post, jwt) => {
 
   }
 }
-
-export const getAllPostsByAuthor = (jwt) => {
-  return async dispatch => {
-    try {
-      let res = await axios.get('/posts/all-by-author', {
-        headers: {
-          'Authorization': `Bearer ${jwt}`
-        }
-      })
-      console.log(res)
-    } catch (err) {
-      console.log(err)
-    }
-  }
-}

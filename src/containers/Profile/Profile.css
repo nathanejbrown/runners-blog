@@ -10,3 +10,12 @@
     justify-content: center;
     min-height: 100vh;
 }
+
+.postsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    flex-wrap: wrap;
+}
