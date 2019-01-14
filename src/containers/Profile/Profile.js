@@ -6,6 +6,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import BlogPost from '../../components/BlogPost/BlogPost';
 import { updateObject } from '../../shared/utility';
 import './Profile.css';
+// import cloudinary from 'cloudinary-core';
 
 class Profile extends Component {
 
@@ -44,7 +45,18 @@ class Profile extends Component {
         this.props.createNewPost(this.state.post, this.state.token);
     }
 
+    showPhotoUpload = () => {
+        this.photoUpload.open();
+    }
+    
+    photoUpload = window.cloudinary.createUploadWidget({
+            cloudName: 'drwjbjpwv', 
+            uploadPreset: 'tlkohed6'}, (error, result) => { 
+                console.log(error, result) 
+            })
+    
     render () {
+        
 
         let messageFromBackend = <Spinner />
         let allPosts;
@@ -86,6 +98,7 @@ class Profile extends Component {
                     {messageFromBackend}
                     {this.props.redirectPath}
                     {allPosts}
+                    <button onClick={this.showPhotoUpload}>Upload</button>
                     {/* {formOrPost} */}
                 </div>
             </Fragment>

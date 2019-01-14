@@ -6,6 +6,8 @@
   "dependencies": {
     "@material/textfield": "^0.42.0",
     "axios": "^0.18.0",
+    "cloudinary": "^1.13.2",
+    "cloudinary-react": "^1.1.0",
     "gh-pages": "^2.0.1",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
