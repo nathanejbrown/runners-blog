@@ -52,3 +52,23 @@ export const checkLogin = () => {
         }
     }
 }
+
+export const newUser = (user) => {
+    return async dispatch => {
+        try {
+            const signupData = {
+                firstName: user.firstName,
+                lastName: user.lastName,
+                email: user.email,
+                password: user.password
+            }
+            let res = await axios.post('/auth/new', signupData)
+            const expirationDate = new Date(new Date().getTime() + 7200 * 1000);
+            localStorage.setItem('token', res.data.myToken);
+            localStorage.setItem('expirationDate', expirationDate);
+            dispatch(login())
+        } catch (err) {
+            console.log(err)
+        }
+    }
+}

@@ -7,7 +7,8 @@ export {
     startLogin,
     checkLogin,
     redirect,
-    logout
+    logout,
+    newUser
 } from './login'
 
 export {
