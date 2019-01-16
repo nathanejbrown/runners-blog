@@ -1,0 +1,13 @@
+.imageContainer {
+    position: absolute;
+    top: 100px;
+    left: 25px;
+    height: auto;
+    width: auto;
+    text-align: left;
+}
+
+.imageContainer img {
+    max-width: 250px;
+    max-height: 400px;
+}

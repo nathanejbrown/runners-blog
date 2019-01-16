@@ -4,9 +4,9 @@ import { Redirect } from 'react-router-dom';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import BlogPost from '../../components/BlogPost/BlogPost';
+import ProfileImage from '../../components/ProfileImage/ProfileImage';
 import { updateObject } from '../../shared/utility';
 import './Profile.css';
-// import cloudinary from 'cloudinary-core';
 
 class Profile extends Component {
 
@@ -15,7 +15,8 @@ class Profile extends Component {
             title: '',
             body: ''
         },
-        token: null
+        token: null,
+        newProfileImageUrl: null
     }
     
     componentWillMount() {
@@ -51,14 +52,20 @@ class Profile extends Component {
     
     photoUpload = window.cloudinary.createUploadWidget({
             cloudName: 'drwjbjpwv', 
-            uploadPreset: 'tlkohed6'}, (error, result) => { 
-                console.log(error, result) 
+            uploadPreset: 'tlkohed6'}, (err, result) => { 
+                if (err) {
+                    console.log('err', err)
+                } else {
+                    this.setState({newProfileImageUrl: result.info.secure_url})
+                    if (result.event === 'success') {
+                        this.props.saveProfileImage(this.state.token, this.state.newProfileImageUrl);
+                    }
+                }
             })
     
     render () {
-        
 
-        let messageFromBackend = <Spinner />
+        let fullProfile = <Spinner />
         let allPosts;
         // (
         //     <div className='d-flex flex-column align-items-center'>
@@ -77,7 +84,6 @@ class Profile extends Component {
         // );
 
         if (!this.props.loading && this.props.posts) {
-            messageFromBackend = <h1>{this.props.message}{this.props.name}</h1>
             let formattedPosts = this.props.posts.map((post) => {
                 return <BlogPost post={post} loading={this.props.loading} key={post.id} />
             })
@@ -85,6 +91,17 @@ class Profile extends Component {
                 <div className='postsContainer'>
                     {formattedPosts}
                 </div>
+            )
+            fullProfile = (
+                <Fragment>
+                    <ProfileImage name={this.props.name} profileImageUrl={this.props.profileImageUrl} />
+                    <div className='profileContainer'>
+                        {this.props.redirectPath}
+                        {allPosts}
+                        <button onClick={this.showPhotoUpload}>Upload</button>
+                        {/* {formOrPost} */}
+                    </div>
+                </Fragment>
             )
         }
 
@@ -94,13 +111,7 @@ class Profile extends Component {
 
         return (
             <Fragment>
-                <div className='profileContainer'>
-                    {messageFromBackend}
-                    {this.props.redirectPath}
-                    {allPosts}
-                    <button onClick={this.showPhotoUpload}>Upload</button>
-                    {/* {formOrPost} */}
-                </div>
+                {fullProfile}
             </Fragment>
         )
     }
@@ -115,7 +126,8 @@ const mapStateToProps = state => {
         currentPath: state.layout.path,
         name: state.profile.name,
         newPost: state.posts.newPost,
-        posts: state.profile.posts
+        posts: state.profile.posts,
+        profileImageUrl: state.profile.profileImageUrl
     }
 }
 
@@ -126,7 +138,8 @@ const mapDispatchToProps = dispatch => {
         logout: () => dispatch(actions.logout()),
         updateCurrentPath: (path) => dispatch(actions.updateCurrentPath(path)),
         createNewPost: (post, token) => dispatch(actions.createNewPost(post, token)),
-        getAllPostsByAuthor: (token) => dispatch(actions.getAllPostsByAuthor(token))
+        getAllPostsByAuthor: (token) => dispatch(actions.getAllPostsByAuthor(token)),
+        saveProfileImage: (token, url) => dispatch(actions.saveProfileImage(token, url))
     }
 }
 

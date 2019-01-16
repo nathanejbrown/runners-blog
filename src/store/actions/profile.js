@@ -11,7 +11,8 @@ export const handleProfileInfo = (data) => {
     return {
         type: actionTypes.GET_PROFILE_INFO,
         message: data.message,
-        name: data.name
+        name: data.name,
+        profileImageUrl: data.profileImageUrl
     }
 }
 
@@ -31,6 +32,14 @@ export const allPostsByAuthor = (posts) => {
     return {
         type: actionTypes.ALL_POSTS_BY_AUTHOR,
         posts: posts
+    }
+}
+
+export const changeProfileInfo = (key, value) => {
+    return {
+        type: actionTypes.CHANGE_PROFILE_INFO,
+        key: key,
+        value: value
     }
 }
 
@@ -65,3 +74,22 @@ export const getAllPostsByAuthor = (jwt) => {
       }
     }
   }
+
+export const saveProfileImage = (jwt, url) => {
+    return async dispatch => {
+        try {
+            let data = {
+                profileImageUrl: url
+            }
+            let res = await axios.post('/profile/new-profile-image', data, {
+                headers: {
+                    'Authorization': `Bearer ${jwt}`
+                }
+            })
+            dispatch(changeProfileInfo('profileImageUrl', res.data.profileImageUrl))
+            console.log(res)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+}

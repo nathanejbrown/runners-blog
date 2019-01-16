@@ -13,6 +13,7 @@ export {
 
 export {
     getProfileInfo,
+    saveProfileImage,
     startRetrievingData,
     profileInfoFailure,
     getAllPostsByAuthor,
