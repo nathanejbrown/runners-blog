@@ -15,8 +15,7 @@ class Profile extends Component {
             title: '',
             body: ''
         },
-        token: null,
-        newProfileImageUrl: null
+        token: null
     }
     
     componentWillMount() {
@@ -56,9 +55,8 @@ class Profile extends Component {
                 if (err) {
                     console.log('err', err)
                 } else {
-                    this.setState({newProfileImageUrl: result.info.secure_url})
                     if (result.event === 'success') {
-                        this.props.saveProfileImage(this.state.token, this.state.newProfileImageUrl);
+                        this.props.saveProfileImage(this.state.token, result.info.secure_url);
                     }
                 }
             })
