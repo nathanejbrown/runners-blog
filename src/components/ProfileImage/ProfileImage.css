@@ -2,12 +2,46 @@
     position: absolute;
     top: 100px;
     left: 25px;
-    height: auto;
-    width: auto;
-    text-align: left;
+    height: 250px;
+    width: 250px;
 }
 
-.imageContainer img {
+.innerContainer {
+    position: relative;
+    height: 100vh;
+}
+
+#whiteBackground {
+    display: none;
+}
+
+.profilePicture {
     max-width: 250px;
-    max-height: 400px;
+    max-height: 250px;
+}
+
+.profilePicture:hover {
+    opacity: 1;
+}
+
+#whiteBackground:hover, .profilePicture:hover + #whiteBackground {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-size: cover;
+    background-position: center;
+    height: inherit;
+    width: inherit;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    cursor: pointer;
+}
+
+.profilePicture:hover, #whiteBackground:hover {
+    /* display: block; */
+    cursor: pointer;
 }

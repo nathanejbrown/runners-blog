@@ -92,11 +92,10 @@ class Profile extends Component {
             )
             fullProfile = (
                 <Fragment>
-                    <ProfileImage name={this.props.name} profileImageUrl={this.props.profileImageUrl} />
+                    <ProfileImage name={this.props.name} profileImageUrl={this.props.profileImageUrl} click={this.showPhotoUpload} />
                     <div className='profileContainer'>
                         {this.props.redirectPath}
                         {allPosts}
-                        <button onClick={this.showPhotoUpload}>Upload</button>
                         {/* {formOrPost} */}
                     </div>
                 </Fragment>
