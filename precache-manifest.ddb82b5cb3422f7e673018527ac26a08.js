@@ -1,9 +1,5 @@
 self.__precacheManifest = [
   {
-    "revision": "315556c1972da68f9f149f3864fd13e3",
-    "url": "/running-blog/static/media/tomasz-wozniak-484204-unsplash.315556c1.jpg"
-  },
-  {
     "revision": "525aa325af6200d244083e066af760b1",
     "url": "/running-blog/static/media/james-chou-325067-unsplash.525aa325.jpg"
   },
@@ -16,19 +12,19 @@ self.__precacheManifest = [
     "url": "/running-blog/static/js/runtime~main.555fe72b.js"
   },
   {
-    "revision": "dc35751ae66bfe99cdf8",
-    "url": "/running-blog/static/js/main.dc35751a.chunk.js"
+    "revision": "b4fa800e85cf3be76401",
+    "url": "/running-blog/static/js/main.b4fa800e.chunk.js"
   },
   {
     "revision": "da039357269e9ec5c43b",
     "url": "/running-blog/static/js/1.da039357.chunk.js"
   },
   {
-    "revision": "dc35751ae66bfe99cdf8",
-    "url": "/running-blog/static/css/main.4e0c9842.chunk.css"
+    "revision": "b4fa800e85cf3be76401",
+    "url": "/running-blog/static/css/main.1b24dc35.chunk.css"
   },
   {
-    "revision": "b8cb161016337be0434b742154072011",
+    "revision": "7ca6746bdfa0a140aa96041e6b8f459c",
     "url": "/running-blog/index.html"
   }
 ];
