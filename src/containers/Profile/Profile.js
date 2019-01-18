@@ -5,6 +5,7 @@ import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import BlogPost from '../../components/BlogPost/BlogPost';
 import ProfileImage from '../../components/ProfileImage/ProfileImage';
+import Input from '../../components/Input/Input';
 import { updateObject } from '../../shared/utility';
 import './Profile.css';
 
@@ -15,7 +16,8 @@ class Profile extends Component {
             title: '',
             body: ''
         },
-        token: null
+        token: null,
+        errorMessage: null
     }
     
     componentWillMount() {
@@ -42,7 +44,11 @@ class Profile extends Component {
     
     sendNewPost = (event) => {
         event.preventDefault();
-        this.props.createNewPost(this.state.post, this.state.token);
+        if (this.state.post.title && this.state.post.body) {
+            this.props.createNewPost(this.state.post, this.state.token);
+        } else {
+            this.setState({errorMessage: 'Blog Post can\'t be empty'})
+        }
     }
 
     showPhotoUpload = () => {
@@ -65,21 +71,14 @@ class Profile extends Component {
 
         let fullProfile = <Spinner />
         let allPosts;
-        // (
-        //     <div className='d-flex flex-column align-items-center'>
-        //         <form>
-        //             <div className='form-group col-sm-12'>
-        //                 <Input inputName='title' elementType='input' inputPlaceholder='Title' label='Title' changed={(event) => this.changedInput(event)}></Input>
-        //             </div>
-        //             <div className='form-group col-sm-12'>
-        //                 <Input inputName='body' elementType='input' inputPlaceholder='Body' label='Body' changed={(event) => this.changedInput(event)}></Input>
-        //             </div>
-        //             <div className='form-group col-sm-12'>
-        //                 <button type='button' className='btn btn-primary' onClick={(event) => this.sendNewPost(event)}>Submit</button>
-        //             </div>
-        //         </form>
-        //     </div>
-        // );
+        let errorMessage = null;
+
+        if (this.state.errorMessage) {
+            errorMessage = (
+                <h1>{this.state.errorMessage}</h1>
+            )
+        }
+        
 
         if (!this.props.loading && this.props.posts) {
             let formattedPosts = this.props.posts.map((post) => {
@@ -95,7 +94,21 @@ class Profile extends Component {
                     <ProfileImage name={this.props.name} profileImageUrl={this.props.profileImageUrl} click={this.showPhotoUpload} />
                     <div className='profileContainer'>
                         {this.props.redirectPath}
+                        {errorMessage}
                         {allPosts}
+            <div className='d-flex flex-column align-items-center'>
+                <form>
+                    <div className='form-group col-sm-12'>
+                        <Input inputName='title' elementType='input' inputPlaceholder='Title' label='Title' changed={(event) => this.changedInput(event)}></Input>
+                    </div>
+                    <div className='form-group col-sm-12'>
+                        <Input inputName='body' elementType='input' inputPlaceholder='Body' label='Body' changed={(event) => this.changedInput(event)}></Input>
+                    </div>
+                    <div className='form-group col-sm-12'>
+                        <button type='button' className='btn btn-primary' onClick={(event) => this.sendNewPost(event)}>Submit</button>
+                    </div>
+                </form>
+            </div>
                         {/* {formOrPost} */}
                     </div>
                 </Fragment>
