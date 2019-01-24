@@ -68,6 +68,7 @@ export const getAllPostsByAuthor = (jwt) => {
             'Authorization': `Bearer ${jwt}`
           }
         })
+        console.log(res)
         dispatch(allPostsByAuthor(res.data))
       } catch (err) {
         console.log(err)

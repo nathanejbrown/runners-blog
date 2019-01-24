@@ -1,9 +1,11 @@
-.imageContainer {
-    position: absolute;
-    top: 100px;
-    left: 25px;
-    height: 250px;
-    width: 250px;
+@media (min-width: 801px) {
+    .imageContainer {
+        position: absolute;
+        top: 100px;
+        left: 25px;
+        height: 250px;
+        width: 250px;
+    }
 }
 
 .innerContainer {
@@ -11,7 +13,7 @@
     height: 100vh;
 }
 
-#whiteBackground {
+ #whiteBackground {
     display: none;
 }
 
@@ -42,6 +44,5 @@
 }
 
 .profilePicture:hover, #whiteBackground:hover {
-    /* display: block; */
     cursor: pointer;
-}
+} 

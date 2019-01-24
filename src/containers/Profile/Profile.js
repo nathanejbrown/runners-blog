@@ -17,8 +17,8 @@ class Profile extends Component {
             body: ''
         },
         token: null,
-        errorMessage: null,
-        display: 'all'
+        display: 'all',
+        headerMessage: 'All My Posts'
     }
     
     componentWillMount() {
@@ -30,7 +30,8 @@ class Profile extends Component {
             this.props.getProfileInfo(token)
             this.props.getAllPostsByAuthor(token)
         }
-        this.props.updateCurrentPath(this.props.location.pathname)
+        this.props.updateCurrentPath(this.props.location.pathname);
+        this.props.getAllPostsByAuthor(this.state.token);
     }
 
     changedInput = (event) => {
@@ -47,20 +48,22 @@ class Profile extends Component {
         event.preventDefault();
         if (this.state.post.title && this.state.post.body) {
             this.props.createNewPost(this.state.post, this.state.token);
-            this.props.getAllPostsByAuthor(this.state.token);
-            this.setState({display: 'all'})
+            // this.props.getAllPostsByAuthor(this.state.token);
+            this.setState({headerMessage: `Blog Post ${this.state.post.title} was added successfully!`})
         } else {
-            this.setState({errorMessage: 'Blog Post can\'t be empty'})
+            this.setState({headerMessage: 'Blog Post can\'t be empty'})
         }
+    }
+
+    showAllPosts = () => {
+        this.setState({
+            display: 'all', headerMessage: 'All My Posts'
+        });
+        this.props.getAllPostsByAuthor(this.state.token);
     }
 
     showPhotoUpload = () => {
         this.photoUpload.open();
-    }
-
-    allPosts = () => {
-        this.props.getAllPostsByAuthor(this.state.token);
-        this.setState({display: 'all'})
     }
     
     photoUpload = window.cloudinary.createUploadWidget({
@@ -80,13 +83,13 @@ class Profile extends Component {
         let fullProfile = <Spinner />
         let errorMessage = null;
         let contentToDisplay = null;
-
-        if (this.state.errorMessage) {
-            errorMessage = (
-                <h1>{this.state.errorMessage}</h1>
+        let headerMessage = null;
+        
+        if (this.state.headerMessage) {
+            headerMessage = (
+                <h1>{this.state.headerMessage}</h1>
             )
         }
-        
 
         if (!this.props.loading && this.props.posts) {
             let formattedPosts = this.props.posts.map((post) => {
@@ -117,13 +120,20 @@ class Profile extends Component {
             }
             fullProfile = (
                 <Fragment>
-                    <ProfileImage name={this.props.name} profileImageUrl={this.props.profileImageUrl} click={this.showPhotoUpload} />
                     <div className='profileContainer'>
-                        {this.props.redirectPath}
-                        {errorMessage}
-                        <button onClick={this.allPosts}>All Posts</button>
-                        <button onClick={() => this.setState({display: 'new'})}>New Post</button>
-                        {contentToDisplay}
+                        <ProfileImage name={this.props.name} profileImageUrl={this.props.profileImageUrl} click={this.showPhotoUpload} />
+                        <div className='imageNameAndButtons'>
+                            <div className="btn-group" role="group" aria-label="Basic example">
+                                <button className='btn btn-outline-secondary' onClick={this.showAllPosts}>All My Posts</button>
+                                <button className='btn btn-outline-secondary' onClick={() => this.setState({display: 'new', headerMessage: 'Create New Post'})}>New Post</button>
+                            </div>
+                        </div>
+                        <div className='primaryProfileContent'>
+                            {this.props.redirectPath}
+                            {errorMessage}
+                            {headerMessage}
+                            {contentToDisplay}
+                        </div>
                     </div>
                 </Fragment>
             )
