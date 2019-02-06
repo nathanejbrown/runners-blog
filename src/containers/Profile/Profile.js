@@ -22,6 +22,7 @@ class Profile extends Component {
     }
     
     componentWillMount() {
+        console.log('hello!')
         let token = localStorage.getItem('token') || null;
         this.setState({token: token})
         if (!token) {
