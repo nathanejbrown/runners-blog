@@ -7,6 +7,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 class Profile extends Component {
     
     componentWillMount() {
+        console.log('hello!')
         let token = localStorage.getItem('token') || null;
         if (!token) {
             this.props.redirect(<Redirect to={'/'} />);
